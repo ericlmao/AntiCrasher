@@ -1,15 +1,12 @@
 package net.skullian.anticrasher.velocity.alert;
 
-import info.preva1l.trashcan.flavor.annotations.Configure;
-import info.preva1l.trashcan.flavor.annotations.Service;
 import net.craftsupport.anticrasher.common.config.Config;
 import net.craftsupport.anticrasher.common.manager.AlertManager;
 import net.craftsupport.anticrasher.common.util.ACLogger;
 import net.skullian.anticrasher.velocity.AntiCrasher;
 
-@Service
 public class VelocityAlertManager extends AlertManager {
-    public static final VelocityAlertManager instance = new VelocityAlertManager(); // make flavor happy
+    public static final VelocityAlertManager instance = new VelocityAlertManager();
 
     @Override
     public void dispatchCommand(String command) {
@@ -19,7 +16,6 @@ public class VelocityAlertManager extends AlertManager {
         );
     }
 
-    @Configure
     public void initialise() {
         AlertManager.setInstance(this);
         ACLogger.info("Console Alerts: " + Config.i().getLogging().isConsole());

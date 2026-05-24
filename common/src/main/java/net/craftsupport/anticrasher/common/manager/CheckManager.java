@@ -5,8 +5,6 @@ import com.github.retrooper.packetevents.event.PacketListener;
 import com.github.retrooper.packetevents.event.PacketListenerPriority;
 import com.github.retrooper.packetevents.event.PacketReceiveEvent;
 import com.github.retrooper.packetevents.event.PacketSendEvent;
-import info.preva1l.trashcan.flavor.annotations.Configure;
-import info.preva1l.trashcan.flavor.annotations.Service;
 import lombok.Getter;
 import net.craftsupport.anticrasher.api.AntiCrasherAPI;
 import net.craftsupport.anticrasher.api.check.Check;
@@ -19,13 +17,11 @@ import net.craftsupport.anticrasher.common.check.impl.window.WindowA;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
 public class CheckManager implements PacketListener {
     @Getter public static final CheckManager instance = new CheckManager();
 
     public List<Check> checks = new ArrayList<>();
 
-    @Configure
     public void initialise() {
         checks = initializeChecks();
         PacketEvents.getAPI().getEventManager().registerListener(this, PacketListenerPriority.LOWEST);

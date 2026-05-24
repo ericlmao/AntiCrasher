@@ -1,8 +1,5 @@
 package net.craftsupport.anticrasher.bukkit.command;
 
-import com.github.retrooper.packetevents.PacketEvents;
-import info.preva1l.trashcan.flavor.annotations.Configure;
-import info.preva1l.trashcan.flavor.annotations.Service;
 import lombok.Getter;
 import net.craftsupport.anticrasher.api.AntiCrasherAPI;
 import net.craftsupport.anticrasher.api.user.User;
@@ -22,14 +19,12 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Getter
-@Service
 public class BukkitCommandHandler {
     @Getter public static final BukkitCommandHandler instance = new BukkitCommandHandler();
 
     private LegacyPaperCommandManager<User> manager;
     private AnnotationParser<User> annotationParser;
 
-    @Configure
     public void initialise() {
         SenderMapper<CommandSender, User> senderMapper = SenderMapper.create(
                 commandSender -> {

@@ -2,6 +2,8 @@ name: AntiCrasher
 version: "${version}"
 main: net.craftsupport.anticrasher.bukkit.AntiCrasher
 api-version: '1.17'
+depend:
+  - packetevents
 softdepend:
   - ProtocolLib
   - ProtocolSupport

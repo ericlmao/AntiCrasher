@@ -1,6 +1,5 @@
 package net.skullian.anticrasher.velocity.listener;
 
-import com.github.retrooper.packetevents.PacketEvents;
 import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.connection.DisconnectEvent;
 import com.velocitypowered.api.event.connection.LoginEvent;

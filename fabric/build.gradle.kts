@@ -69,7 +69,7 @@ tasks.processResources {
 tasks.register<Copy>("buildAndCollect") {
     group = "build"
     from(tasks.remapJar.get().archiveFile)
-    into(rootProject.rootDir.resolve("libs/"))
+    into(rootProject.layout.buildDirectory.dir("libs"))
     dependsOn("build")
 }
 

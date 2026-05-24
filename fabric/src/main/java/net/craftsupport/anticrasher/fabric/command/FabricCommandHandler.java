@@ -1,7 +1,5 @@
 package net.craftsupport.anticrasher.fabric.command;
 
-import info.preva1l.trashcan.flavor.annotations.Configure;
-import info.preva1l.trashcan.flavor.annotations.Service;
 import lombok.Getter;
 import net.craftsupport.anticrasher.api.AntiCrasherAPI;
 import net.craftsupport.anticrasher.api.user.User;
@@ -19,14 +17,12 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Getter
-@Service
 public class FabricCommandHandler {
     @Getter public static final FabricCommandHandler instance = new FabricCommandHandler();
 
     private FabricServerCommandManager<User> manager;
     private AnnotationParser<User> annotationParser;
 
-    @Configure
     public void initialise() {
         SenderMapper<ServerCommandSource, User> senderMapper = SenderMapper.create(
                 serverCommandSource -> {

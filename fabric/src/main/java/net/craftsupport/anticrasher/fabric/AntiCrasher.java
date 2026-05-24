@@ -1,10 +1,10 @@
 package net.craftsupport.anticrasher.fabric;
 
-import info.preva1l.trashcan.Version;
 import lombok.Getter;
 import lombok.Setter;
 import net.craftsupport.anticrasher.api.AntiCrasherAPI;
 import net.craftsupport.anticrasher.api.Platform;
+import net.craftsupport.anticrasher.api.util.Version;
 import net.craftsupport.anticrasher.fabric.api.FabricAntiCrasherAPI;
 import net.craftsupport.anticrasher.fabric.library.LibraryLoader;
 import net.craftsupport.anticrasher.fabric.service.ServiceManager;

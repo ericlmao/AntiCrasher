@@ -1,7 +1,7 @@
 package net.craftsupport.anticrasher.api;
 
-import info.preva1l.trashcan.Version;
 import net.craftsupport.anticrasher.api.user.User;
+import net.craftsupport.anticrasher.api.util.Version;
 
 import java.nio.file.Path;
 

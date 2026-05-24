@@ -2,20 +2,22 @@ package net.craftsupport.anticrasher.bukkit;
 
 import com.github.puregero.multilib.MultiLib;
 import com.github.retrooper.packetevents.PacketEvents;
-import info.preva1l.trashcan.Version;
-import info.preva1l.trashcan.flavor.Flavor;
-import info.preva1l.trashcan.flavor.FlavorOptions;
 import io.github.retrooper.packetevents.bstats.bukkit.Metrics;
 import io.github.retrooper.packetevents.factory.spigot.SpigotPacketEventsBuilder;
 import lombok.Getter;
 import net.craftsupport.anticrasher.api.AntiCrasherAPI;
 import net.craftsupport.anticrasher.api.Platform;
 import net.craftsupport.anticrasher.api.user.User;
+import net.craftsupport.anticrasher.api.util.Version;
+import net.craftsupport.anticrasher.bukkit.alert.BukkitAlertManager;
 import net.craftsupport.anticrasher.common.manager.CheckManager;
 import net.craftsupport.anticrasher.common.util.ACLogger;
 import net.craftsupport.anticrasher.bukkit.api.BukkitAntiCrasherAPI;
+import net.craftsupport.anticrasher.bukkit.command.BukkitCommandHandler;
 import net.craftsupport.anticrasher.bukkit.listener.PlayerEvents;
 import net.craftsupport.anticrasher.bukkit.user.BukkitUser;
+import net.craftsupport.anticrasher.common.config.Config;
+import net.craftsupport.anticrasher.common.update.UpdateChecker;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -26,8 +28,6 @@ public class AntiCrasher extends JavaPlugin implements Platform {
 
     @Getter public static AntiCrasher instance;
     private User consoleUser;
-
-    protected Flavor flavor;
 
     public AntiCrasher() {
         instance = this;
@@ -40,14 +40,6 @@ public class AntiCrasher extends JavaPlugin implements Platform {
 
     @Override
     public void onLoad() {
-        this.flavor = Flavor.create(
-                this.getClass(),
-                new FlavorOptions(
-                        this.getLogger(),
-                        this.getClass().getPackageName()
-                )
-        );
-
         PacketEvents.setAPI(SpigotPacketEventsBuilder.build(this));
         PacketEvents.getAPI().getSettings().reEncodeByDefault(false)
                 .checkForUpdates(true)
@@ -66,7 +58,11 @@ public class AntiCrasher extends JavaPlugin implements Platform {
         ACLogger.info("Initialising Metrics.");
         new Metrics(this, 20218);
 
-        flavor.startup();
+        Config.i();
+        CheckManager.getInstance().initialise();
+        BukkitAlertManager.instance.initialise();
+        BukkitCommandHandler.getInstance().initialise();
+        UpdateChecker.getInstance().check();
         getServer().getPluginManager().registerEvents(new PlayerEvents(), this);
 
         this.consoleUser = new BukkitUser(UUID.randomUUID(), Bukkit.getConsoleSender());
@@ -76,8 +72,6 @@ public class AntiCrasher extends JavaPlugin implements Platform {
 
     @Override
     public void onDisable() {
-        flavor.close();
-
         PacketEvents.getAPI().terminate();
 
         ACLogger.info("AntiCrasher has disabled.");
