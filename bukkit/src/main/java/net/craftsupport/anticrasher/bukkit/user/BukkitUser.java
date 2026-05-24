@@ -1,7 +1,6 @@
 package net.craftsupport.anticrasher.bukkit.user;
 
 import com.github.retrooper.packetevents.PacketEvents;
-import lombok.Getter;
 import net.craftsupport.anticrasher.api.AntiCrasherAPI;
 import net.craftsupport.anticrasher.api.user.User;
 import net.craftsupport.anticrasher.api.util.objects.Tuple;
@@ -15,7 +14,6 @@ import org.bukkit.entity.Player;
 import java.util.List;
 import java.util.UUID;
 
-@Getter
 public class BukkitUser extends User {
 
     private final com.github.retrooper.packetevents.protocol.player.User user;
@@ -65,6 +63,11 @@ public class BukkitUser extends User {
     @Override
     public com.github.retrooper.packetevents.protocol.player.User toPE() {
         return user;
+    }
+
+    @Override
+    public Object getSource() {
+        return source;
     }
 
     @Override

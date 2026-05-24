@@ -11,3 +11,7 @@ allprojects {
         mavenCentral()
     }
 }
+
+tasks.named("jar") {
+    enabled = false
+}

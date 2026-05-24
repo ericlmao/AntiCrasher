@@ -3,6 +3,14 @@ plugins {
     anticrasher.`common-conventions`
 }
 
+tasks.named("jar") {
+    enabled = false
+}
+
+tasks.named("shadowJar") {
+    enabled = false
+}
+
 tasks.register<Jar>("generateJdoc") {
     group = JavaBasePlugin.DOCUMENTATION_GROUP
     archiveClassifier.set("javadoc")

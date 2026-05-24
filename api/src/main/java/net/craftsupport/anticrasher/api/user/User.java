@@ -60,8 +60,8 @@ public abstract class User {
 
     /**
      * Get the original source class of this user.
-     * For Paper, this would be CommandSource.
-     * For Fabric, this would be ServerCommandSource.
+     * For Bukkit, this would be CommandSender.
+     * For Velocity, this would be CommandSource.
      *
      * @return The original Object source.
      */
