@@ -1,6 +1,7 @@
 import gradle.kotlin.dsl.accessors._983bb327668533c52660ac523168b406.annotationProcessor
 import gradle.kotlin.dsl.accessors._983bb327668533c52660ac523168b406.compileOnly
 import org.gradle.accessors.dm.LibrariesForLibs
+import org.gradle.api.tasks.SourceSetContainer
 
 plugins {
     `java-library`
@@ -18,12 +19,24 @@ val libs = the<LibrariesForLibs>()
 repositories {
     mavenCentral()
     maven {
+        name = "fabricmc"
+        url = uri("https://maven.fabricmc.net/")
+    }
+    maven {
         name = "codemc-snapshots"
         url = uri("https://repo.codemc.io/repository/maven-snapshots/")
     }
     maven {
-        name = "finallyADecentReleases"
-        url = uri("https://repo.preva1l.info/releases")
+        name = "codemc-releases"
+        url = uri("https://repo.codemc.io/repository/maven-releases/")
+    }
+    maven {
+        name = "clojars"
+        url = uri("https://repo.clojars.org/")
+    }
+    maven {
+        name = "alessiodp-snapshots"
+        url = uri("https://repo.alessiodp.com/snapshots/")
     }
     maven {
         name = "Sonatype Snapshots"
@@ -36,7 +49,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly(libs.trashcan.common)
+    compileOnly(libs.packetevents.api)
 
     compileOnly(libs.lombok)
     annotationProcessor(libs.lombok)
@@ -53,11 +66,27 @@ tasks {
 
 // god, I hate this, but it's the only way to get Fabric to cooperate w/ dependencies
 tasks.jar {
-    dependsOn(":common:classes", ":api:classes")
-    from(project(":common").sourceSets["main"].output)
-    from(project(":api").sourceSets["main"].output)
+    val commonProject = project.findProject(":common")
+    val apiProject = project.findProject(":api")
+    val commonSourceSets = commonProject?.extensions?.findByType(SourceSetContainer::class.java)
+    val apiSourceSets = apiProject?.extensions?.findByType(SourceSetContainer::class.java)
 
-    mustRunAfter(":common:jar", ":api:jar")
+    if (commonProject != null) {
+        dependsOn(":common:jar")
+        inputs.files(files(commonProject.layout.buildDirectory.file("libs/${commonProject.name}-${commonProject.version}.jar")).builtBy(":common:jar"))
+    }
+    if (apiProject != null) {
+        dependsOn(":api:jar")
+        inputs.files(files(apiProject.layout.buildDirectory.file("libs/${apiProject.name}-${apiProject.version}.jar")).builtBy(":api:jar"))
+    }
+
+    if (commonProject != null && apiProject != null && commonSourceSets != null && apiSourceSets != null) {
+        dependsOn(":common:classes", ":api:classes")
+        from(commonSourceSets["main"].output)
+        from(apiSourceSets["main"].output)
+
+        mustRunAfter(":common:jar", ":api:jar")
+    }
 
     from({
         configurations.runtimeClasspath.get().filter { it.name.contains("libby") }.map { zipTree(it) }

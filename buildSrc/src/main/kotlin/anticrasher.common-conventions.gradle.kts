@@ -18,8 +18,16 @@ repositories {
         url = uri("https://repo.codemc.io/repository/maven-snapshots/")
     }
     maven {
-        name = "finallyADecentReleases"
-        url = uri("https://repo.preva1l.info/releases")
+        name = "codemc-releases"
+        url = uri("https://repo.codemc.io/repository/maven-releases/")
+    }
+    maven {
+        name = "clojars"
+        url = uri("https://repo.clojars.org/")
+    }
+    maven {
+        name = "alessiodp-snapshots"
+        url = uri("https://repo.alessiodp.com/snapshots/")
     }
     maven {
         name = "Sonatype Snapshots"
@@ -30,7 +38,6 @@ repositories {
 dependencies {
     compileOnly(libs.gson)
     compileOnly(libs.packetevents.api)
-    implementation(libs.trashcan.common)
     api(libs.bundles.adventure)
 
     compileOnly(libs.lombok)
@@ -76,7 +83,7 @@ tasks {
         relocate("org.bstats", "net.craftsupport.anticrasher.bstats")
 
         archiveFileName.set("${rootProject.name}-${project.name}-v${rootProject.version}.jar")
-        destinationDirectory.set(rootProject.rootDir.resolve("./libs"))
+        destinationDirectory.set(rootProject.layout.buildDirectory.dir("libs"))
     }
 }
 

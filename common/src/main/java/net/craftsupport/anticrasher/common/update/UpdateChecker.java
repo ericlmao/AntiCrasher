@@ -3,13 +3,10 @@ package net.craftsupport.anticrasher.common.update;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import info.preva1l.trashcan.Version;
-import info.preva1l.trashcan.flavor.annotations.Configure;
-import info.preva1l.trashcan.flavor.annotations.Service;
 import lombok.Getter;
-import lombok.experimental.UtilityClass;
 import net.craftsupport.anticrasher.api.AntiCrasherAPI;
 import net.craftsupport.anticrasher.api.user.User;
+import net.craftsupport.anticrasher.api.util.Version;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -17,14 +14,12 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.concurrent.CompletableFuture;
 
-@Service
 public class UpdateChecker {
     @Getter public static final UpdateChecker instance = new UpdateChecker();
 
     private final Version CURRENT_VERSION = AntiCrasherAPI.getInstance().getPlatform().getCurrentVersion();
     private Version LATEST_VERSION;
 
-    @Configure
     public void check() {
         CompletableFuture.supplyAsync(this::query).thenAccept(latestVersion -> {
             LATEST_VERSION = latestVersion;

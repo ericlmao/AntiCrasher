@@ -27,7 +27,7 @@ dependencies {
     compileOnly(libs.bundles.cloud.paper)
 
     api(project(":common"))
-    implementation(libs.packetevents.spigot)
+    compileOnly(libs.packetevents.spigot)
     implementation(libs.multilib)
 }
 

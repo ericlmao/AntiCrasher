@@ -1,3 +1,5 @@
+This is a fork which removes the shaded packetevents from the jar and adds PacketEvents as a dependency
+
 <div align="center">
     <h1>AntiCrasher</h1>
     <div>
@@ -58,3 +60,5 @@ YourKit is the creator of <a href="https://www.yourkit.com/java/profiler/">YourK
 and <a href="https://www.yourkit.com/youmonitor/">YourKit YouMonitor</a>.
 
 ![YourKit](https://www.yourkit.com/images/yklogo.png)
+
+Credit to [smashyalts/AntiCrasher](https://github.com/smashyalts/AntiCrasher)

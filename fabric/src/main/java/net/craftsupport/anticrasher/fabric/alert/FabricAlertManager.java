@@ -3,17 +3,14 @@ package net.craftsupport.anticrasher.fabric.alert;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.ParseResults;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import info.preva1l.trashcan.flavor.annotations.Configure;
-import info.preva1l.trashcan.flavor.annotations.Service;
 import net.craftsupport.anticrasher.common.config.Config;
 import net.craftsupport.anticrasher.common.manager.AlertManager;
 import net.craftsupport.anticrasher.common.util.ACLogger;
 import net.craftsupport.anticrasher.fabric.AntiCrasher;
 import net.minecraft.server.command.ServerCommandSource;
 
-@Service
 public class FabricAlertManager extends AlertManager {
-    public static final FabricAlertManager instance = new FabricAlertManager(); // make flavor happy
+    public static final FabricAlertManager instance = new FabricAlertManager();
 
     @Override
     public void dispatchCommand(String command) {
@@ -31,7 +28,6 @@ public class FabricAlertManager extends AlertManager {
         }
     }
 
-    @Configure
     public void initialise() {
         AlertManager.setInstance(this);
         ACLogger.info("Console Alerts: " + Config.i().getLogging().isConsole());
