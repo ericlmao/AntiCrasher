@@ -8,6 +8,10 @@ plugins {
     alias(libs.plugins.idea)
 }
 
+val nonProjectRuntimeClasspath = configurations.runtimeClasspath.get().copyRecursive {
+    it !is ProjectDependency
+}
+
 repositories {
     maven {
         name = "papermc"
@@ -52,6 +56,15 @@ modrinth {
 }
 
 tasks {
+    shadowJar {
+        configurations = listOf(nonProjectRuntimeClasspath)
+        from(project(":common").layout.buildDirectory.dir("classes/java/main"))
+        from(project(":common").layout.buildDirectory.dir("resources/main"))
+        from(project(":api").layout.buildDirectory.dir("classes/java/main"))
+        from(project(":api").layout.buildDirectory.dir("resources/main"))
+        dependsOn(":common:classes", ":api:classes")
+    }
+
     runVelocity {
         version("3.4.0-SNAPSHOT")
 

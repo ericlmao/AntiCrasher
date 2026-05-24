@@ -27,12 +27,6 @@ adventure-api = { group = "net.kyori", name = "adventure-api", version.ref = "ad
 adventure-text-minimessage = { group = "net.kyori", name = "adventure-text-minimessage", version.ref = "adventure-version" }
 adventure-text-logger-slf4j = { group = "net.kyori", name = "adventure-text-logger-slf4j", version.ref = "adventure-version" }
 
-## Fabric
-libby-fabric = { module = "com.alessiodp.libby:libby-fabric", version = "2.0.0-SNAPSHOT" }
-fabric-permissions-api = { module = "me.lucko:fabric-permissions-api", version = "0.4.1" }
-packetevents-fabric = { module = "com.github.retrooper:packetevents-fabric", version.ref = "packetevents-version" }
-cloud-fabric = { group = "org.incendo", name = "cloud-fabric", version = "2.0.0-beta.12" }
-
 # Velocity
 velocity-api = { group = "com.velocitypowered", name = "velocity-api", version = "3.4.0-SNAPSHOT" }
 libby-velocity = { module = "com.alessiodp.libby:libby-velocity", version = "2.0.0-SNAPSHOT" }
@@ -41,6 +35,7 @@ cloud-velocity = { group = "org.incendo", name = "cloud-velocity", version = "2.
 
 ## Paper
 paper-api = { group = "io.papermc.paper", name = "paper-api", version = "1.17-R0.1-SNAPSHOT" }
+brigadier = { group = "com.mojang", name = "brigadier", version = "1.0.18" }
 placeholderapi = { group = "me.clip", name = "placeholderapi", version = "2.11.6" }
 multilib = { group = "com.github.puregero", name = "multilib", version = "1.2.4" }
 packetevents-spigot = { group = "com.github.retrooper", name = "packetevents-spigot", version.ref = "packetevents-version" }
@@ -58,8 +53,4 @@ runvelocity = { id = "xyz.jpenilla.run-velocity", version.ref = "runtask-version
 
 minotaur = { id = "com.modrinth.minotaur", version = "2.+" }
 idea = { id = "org.jetbrains.gradle.plugin.idea-ext", version = "1.3" }
-
-# Fabric
-fabric-loom = { id = "fabric-loom", version = "1.11.4" }
-
 

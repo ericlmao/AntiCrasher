@@ -48,7 +48,7 @@ import java.util.concurrent.TimeUnit;
         }
 )
 public class AntiCrasher implements Platform {
-    @Getter private static AntiCrasher instance;
+    private static AntiCrasher instance;
 
     public final ProxyServer server;
     public final Logger logger;
@@ -68,6 +68,10 @@ public class AntiCrasher implements Platform {
         this.pluginContainer = pluginContainer;
         this.dataDirectory = dataDirectory;
         this.metricsFactory = metricsFactory;
+    }
+
+    public static AntiCrasher getInstance() {
+        return instance;
     }
 
     @Subscribe

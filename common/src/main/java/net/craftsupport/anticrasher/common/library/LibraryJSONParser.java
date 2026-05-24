@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-// Only used for Fabric and Velocity
+// Only used for Velocity
 public class LibraryJSONParser {
 
     private final Gson gson = new GsonBuilder().create();

@@ -4,7 +4,6 @@ import com.github.puregero.multilib.MultiLib;
 import com.github.retrooper.packetevents.PacketEvents;
 import io.github.retrooper.packetevents.bstats.bukkit.Metrics;
 import io.github.retrooper.packetevents.factory.spigot.SpigotPacketEventsBuilder;
-import lombok.Getter;
 import net.craftsupport.anticrasher.api.AntiCrasherAPI;
 import net.craftsupport.anticrasher.api.Platform;
 import net.craftsupport.anticrasher.api.user.User;
@@ -26,11 +25,15 @@ import java.util.UUID;
 
 public class AntiCrasher extends JavaPlugin implements Platform {
 
-    @Getter public static AntiCrasher instance;
+    public static AntiCrasher instance;
     private User consoleUser;
 
     public AntiCrasher() {
         instance = this;
+    }
+
+    public static AntiCrasher getInstance() {
+        return instance;
     }
 
     @Override

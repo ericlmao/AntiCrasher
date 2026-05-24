@@ -78,8 +78,10 @@ tasks {
 
         duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 
-        relocate("com.github.retrooper.packetevents", "net.craftsupport.anticrasher.packetevents.api")
-        relocate("io.github.retrooper.packetevents", "net.craftsupport.anticrasher.packetevents.impl")
+        if (project.name != "bukkit") {
+            relocate("com.github.retrooper.packetevents", "net.craftsupport.anticrasher.packetevents.api")
+            relocate("io.github.retrooper.packetevents", "net.craftsupport.anticrasher.packetevents.impl")
+        }
         relocate("org.bstats", "net.craftsupport.anticrasher.bstats")
 
         archiveFileName.set("${rootProject.name}-${project.name}-v${rootProject.version}.jar")

@@ -4,6 +4,10 @@ plugins {
     alias(libs.plugins.minotaur)
 }
 
+val nonProjectRuntimeClasspath = configurations.runtimeClasspath.get().copyRecursive {
+    it !is ProjectDependency
+}
+
 repositories {
     maven {
         name = "papermc"
@@ -23,6 +27,7 @@ repositories {
 
 dependencies {
     compileOnly(libs.paper.api)
+    compileOnly(libs.brigadier)
     compileOnly(libs.placeholderapi)
     compileOnly(libs.bundles.cloud.paper)
 
@@ -32,6 +37,15 @@ dependencies {
 }
 
 tasks {
+    shadowJar {
+        configurations = listOf(nonProjectRuntimeClasspath)
+        from(project(":common").layout.buildDirectory.dir("classes/java/main"))
+        from(project(":common").layout.buildDirectory.dir("resources/main"))
+        from(project(":api").layout.buildDirectory.dir("classes/java/main"))
+        from(project(":api").layout.buildDirectory.dir("resources/main"))
+        dependsOn(":common:classes", ":api:classes")
+    }
+
     runServer {
         minecraftVersion("1.21.1")
 

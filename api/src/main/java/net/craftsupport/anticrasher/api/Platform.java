@@ -7,7 +7,7 @@ import java.nio.file.Path;
 
 /**
  * This is the root interface for the AntiCrasher platform.
- * It is implemented in all platform main classes (JavaPlugin for spigot, ModInitializer for fabric, etc)
+ * It is implemented in all platform main classes (JavaPlugin for Bukkit, Velocity plugin, etc)
  */
 public interface Platform {
 

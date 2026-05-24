@@ -1,6 +1,5 @@
 package net.craftsupport.anticrasher.bukkit.command;
 
-import lombok.Getter;
 import net.craftsupport.anticrasher.api.AntiCrasherAPI;
 import net.craftsupport.anticrasher.api.user.User;
 import net.craftsupport.anticrasher.common.command.impl.ReloadCommand;
@@ -18,12 +17,23 @@ import org.incendo.cloud.paper.LegacyPaperCommandManager;
 import java.util.Objects;
 import java.util.UUID;
 
-@Getter
 public class BukkitCommandHandler {
-    @Getter public static final BukkitCommandHandler instance = new BukkitCommandHandler();
+    public static final BukkitCommandHandler instance = new BukkitCommandHandler();
 
     private LegacyPaperCommandManager<User> manager;
     private AnnotationParser<User> annotationParser;
+
+    public static BukkitCommandHandler getInstance() {
+        return instance;
+    }
+
+    public LegacyPaperCommandManager<User> getManager() {
+        return manager;
+    }
+
+    public AnnotationParser<User> getAnnotationParser() {
+        return annotationParser;
+    }
 
     public void initialise() {
         SenderMapper<CommandSender, User> senderMapper = SenderMapper.create(

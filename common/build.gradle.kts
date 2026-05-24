@@ -11,3 +11,11 @@ dependencies {
     implementation(libs.configlib)
     api(project(":api"))
 }
+
+tasks.named("jar") {
+    enabled = false
+}
+
+tasks.named("shadowJar") {
+    enabled = false
+}
