@@ -1,4 +1,4 @@
-This is a fork which removes the shaded packetevents from the jar and adds PacketEvents as a dependency
+This is a fork which removes the shaded packetevents from the jar and adds PacketEvents as a dependency. Builds are available from https://ci.moonrise.gg/job/AntiCrasher/.
 
 <div align="center">
     <h1>AntiCrasher</h1>
